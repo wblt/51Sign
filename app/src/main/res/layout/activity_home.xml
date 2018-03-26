@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:id="@+id/ly_tab"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/tv_home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="钱包"
+            android:textSize="14sp"
+            android:textColor="@color/tab_textcolor"
+            android:drawableTop="@drawable/tab_home_img"
+            android:drawablePadding="3dp"
+            android:padding="5dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_mine"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="我的"
+            android:textSize="14sp"
+            android:textColor="@color/tab_textcolor"
+            android:drawableTop="@drawable/tab_mine_img"
+            android:drawablePadding="3dp"
+            android:padding="5dp"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_line"
+        android:layout_width="match_parent"
+        android:layout_height="2sp"
+        android:background="#E5E5E5"
+        android:layout_above="@+id/ly_tab"
+        />
+
+    <FrameLayout
+        android:id="@+id/fg_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tv_line"
+        >
+    </FrameLayout>
+
+</RelativeLayout>
