@@ -1,5 +1,9 @@
 package cn.tthud.a51sign.ecdsa;
 
+
+
+import org.apaches.commons.codec.binary.Hex;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,13 +13,8 @@ import java.io.OutputStream;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
-import org.apache.commons.codec.binary.Hex;
-
-
 /**
  * ECC密钥生成和数字签名
- * @author wangchao
- *
  */
 public class ECDSA {
 	/**
@@ -46,7 +45,8 @@ public class ECDSA {
 	 */
 	public static String computePublicKeyWithoutCompressed(String privateKey) {
 		byte [] publicKey = K256KeyPair.getPublicWithoutCompressed(new BigInteger(privateKey,16));
-		return Hex.encodeHexString(publicKey);
+		String ss = Hex.encodeHexString(publicKey);
+		return ss;
 	}
 	
 	/**
@@ -139,8 +139,7 @@ public class ECDSA {
 	}
 	
 	public static void main(String[] args) {
-		ECDSA test = new ECDSA(); 
-		
+		ECDSA test = new ECDSA();
 		// 生成随机数私钥
 		String privateKey0 = test.generatePrivateKey();
 		
@@ -148,7 +147,7 @@ public class ECDSA {
 //		test.savePrivateKeyToLocal("E:/privateKey.dat", privateKey);
 		
 		// 从本地读取私钥
-		String privateKey = test.loadPrivateKeyFormLocal("E:/privateKey.dat");
+		String privateKey = "5502767ae95def4039ef1ee9f4ce46d25b0b1b240621e8b9d7743afa2a3eb5ae";//test.loadPrivateKeyFormLocal("E:/privateKey.dat");//
 		
 		// 根据私钥计算公钥
 		String publicKey = test.computePublicKey(privateKey);
@@ -163,8 +162,7 @@ public class ECDSA {
 		String signdata = test.sign(data.getBytes(), privateKey);
 		// 验证签名
 		boolean result = test.verify(data.getBytes(), signdata, publicKey);
-		
-		
+
 		System.out.println(result);
 	}
 }
