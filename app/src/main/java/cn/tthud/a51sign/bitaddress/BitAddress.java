@@ -46,12 +46,12 @@ public class BitAddress {
 		return bitAddress;
 	}
 
-	public static void main(String[] args) {
-		BitAddress s = new BitAddress();
-		String privateKey = ECDSA.generatePrivateKey();
-		String publicKey = ECDSA.computePublicKeyWithoutCompressed(privateKey);
-		System.out.println(publicKey);
-		String result = s.calculateAddress(publicKey);
-		System.out.println("0x"+result);
-	}
+//	public static void main(String[] args) {
+//		BitAddress s = new BitAddress();
+//		String privateKey = ECDSA.generatePrivateKey();
+//		String publicKey = ECDSA.computePublicKeyWithoutCompressed(privateKey);
+//		System.out.println(publicKey);
+//		String result = s.calculateAddress(publicKey);
+//		System.out.println("0x"+result);
+//	}
 }

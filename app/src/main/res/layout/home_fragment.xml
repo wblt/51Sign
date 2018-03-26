@@ -55,11 +55,13 @@
 
                 <TextView
                     android:textColor="#ffffff"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="总资产 = 0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_above="@+id/tv_rmb"
+                    android:text="≈ 0"
                     android:textSize="25sp"
-                    android:layout_alignParentBottom="true"
+
                     />
 
                 <TextView
@@ -73,17 +75,27 @@
                     android:textSize="15sp"
                     android:textColor="#ffffff"/>
 
+                <ImageView
+                    android:id="@+id/iv_add"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:src="@mipmap/ic_launcher"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    />
+
 
             </RelativeLayout>
 
 
-            <android.support.v7.app.AlertController.RecycleListView
+            <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
 
-            </android.support.v7.app.AlertController.RecycleListView>
-
+            </android.support.v7.widget.RecyclerView>
 
         </LinearLayout>
         

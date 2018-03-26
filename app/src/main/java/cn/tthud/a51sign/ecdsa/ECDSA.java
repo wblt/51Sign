@@ -1,7 +1,5 @@
 package cn.tthud.a51sign.ecdsa;
 
-
-
 import org.apaches.commons.codec.binary.Hex;
 
 import java.io.File;
