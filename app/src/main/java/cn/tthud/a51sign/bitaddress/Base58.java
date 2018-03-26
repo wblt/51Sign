@@ -2,14 +2,7 @@ package cn.tthud.a51sign.bitaddress;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
- 
-/**
- * Created with IntelliJ IDEA.
- * User: noah
- * Date: 8/2/13
- * Time: 10:36 AM
- * To change this template use File | Settings | File Templates.
- */
+
 public class Base58 {
  
     public static final char[] ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz".toCharArray();

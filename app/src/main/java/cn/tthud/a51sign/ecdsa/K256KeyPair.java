@@ -208,12 +208,10 @@ public class K256KeyPair implements IKeyPair {
         signer.init(true, privKey);
         BigInteger[] sigs = signer.generateSignature(hash);
         BigInteger r = sigs[0], s = sigs[1];
-
         BigInteger otherS = SECP256K1.order().subtract(s);
         if (s.compareTo(otherS) == 1) {
             s = otherS;
         }
-
         return new ECDSASignature(r, s);
     }
 }
