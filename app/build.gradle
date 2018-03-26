@@ -14,6 +14,11 @@ android {
             enabled true
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -35,4 +40,7 @@ dependencies {
     compile files('libs/json.org.jar')
     compile files('libs/ripple.jar')
     compile files('libs/codec.jar')
+    compile 'com.android.support:appcompat-v7:26.1.0'//版本随意
+    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
+    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'//没有使用特殊Header，可以不加这行
 }
