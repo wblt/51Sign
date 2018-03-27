@@ -39,6 +39,7 @@ dependencies {
     compile files('libs/codec.jar')
     //版本随意
     //没有使用特殊Header，可以不加这行
+    compile files('libs/core-3.3.0.jar')
     compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
