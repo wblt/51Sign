@@ -41,7 +41,7 @@
 
 
         <!-- 扫描取景框 -->
-        <com.example.wb.testzxing.view.ViewfinderView
+        <cn.tthud.a51sign.zxing.view.ViewfinderView
             android:id="@+id/viewfinder_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"

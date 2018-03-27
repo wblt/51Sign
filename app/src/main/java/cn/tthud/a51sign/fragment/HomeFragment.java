@@ -47,7 +47,6 @@ import static android.app.Activity.RESULT_OK;
  */
 
 public class HomeFragment extends Fragment {
-
     private RecyclerView recyc_list;
     private List<String> list;
     private HomeAdapter adapter;
@@ -56,12 +55,11 @@ public class HomeFragment extends Fragment {
     private TextView top_center_text;
     private ImageButton top_left;
     private int REQUEST_CODE_SCAN = 111;
-    private LinearLayout tv_username;
+    private LinearLayout ll_code_address;
 
     public HomeFragment() {
 
     }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -129,7 +127,8 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        tv_username.setOnClickListener(new View.OnClickListener() {
+        ll_code_address = view.findViewById(R.id.ll_code_address);
+        ll_code_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "开发中", Toast.LENGTH_SHORT).show();
