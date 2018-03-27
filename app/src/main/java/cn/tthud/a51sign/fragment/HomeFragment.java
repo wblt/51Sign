@@ -32,8 +32,8 @@ import com.google.zxing.WriterException;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.tthud.a51sign.AddAssetsActivity;
 import cn.tthud.a51sign.R;
+import cn.tthud.a51sign.activity.AddAssetsActivity;
 import cn.tthud.a51sign.adapter.HomeAdapter;
 import cn.tthud.a51sign.zxing.android.CaptureActivity;
 import cn.tthud.a51sign.zxing.bean.ZxingConfig;
