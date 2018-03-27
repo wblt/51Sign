@@ -44,6 +44,12 @@ public class AddAssetsActivity extends AppCompatActivity {
         top_center_text = findViewById(R.id.top_center_text);
         top_center_text.setText("添加新资产");
         top_left = findViewById(R.id.top_left);
+        top_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void initView() {
