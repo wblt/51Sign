@@ -37,6 +37,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import cn.tthud.a51sign.R;
 import cn.tthud.a51sign.activity.AddAssetsActivity;
+import cn.tthud.a51sign.activity.ReceivAddressActivity;
 import cn.tthud.a51sign.adapter.HomeAdapter;
 import cn.tthud.a51sign.zxing.android.CaptureActivity;
 import cn.tthud.a51sign.zxing.bean.ZxingConfig;
@@ -132,25 +133,12 @@ public class HomeFragment extends Fragment {
         ll_code_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "开发中", Toast.LENGTH_SHORT).show();
-//                String contentEtString = "dfjdfkjdfkdjfkdjfdkjfkdfjd";
-//                if (TextUtils.isEmpty(contentEtString)) {
-//                    Toast.makeText(getActivity(), "contentEtString不能为空", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                Bitmap bitmap = null;
-//                try {
-//                    bitmap = CodeCreator.createQRCode(contentEtString, 1000, 1000, null);
-//                } catch (WriterException e) {
-//                    e.printStackTrace();
-//                }
-//                if (bitmap != null) {
-//                    contentIv.setImageBitmap(bitmap);
-//                }
+//              Toast.makeText(getActivity(), "开发中", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), ReceivAddressActivity.class);
+                startActivity(intent);
             }
         });
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
