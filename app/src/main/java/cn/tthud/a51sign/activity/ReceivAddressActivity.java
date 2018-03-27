@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -14,6 +15,7 @@ import com.google.zxing.WriterException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.tthud.a51sign.R;
 import cn.tthud.a51sign.zxing.encode.CodeCreator;
 
@@ -56,5 +58,15 @@ public class ReceivAddressActivity extends AppCompatActivity {
 
     }
 
+    @OnClick({R.id.btn_copy_address})
+    void viewClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_copy_address:
+                Toast.makeText(ReceivAddressActivity.this, "开发中", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
+    }
 
 }
