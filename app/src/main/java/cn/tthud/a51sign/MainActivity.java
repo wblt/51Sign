@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import cn.tthud.a51sign.bitaddress.BitAddress;
 import cn.tthud.a51sign.ecdsa.ECDSA;
 import cn.tthud.a51sign.fragment.HomeFragment;
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
      //   setContentView(R.layout.activity_main);
         setContentView(R.layout.activity_home);
+        ButterKnife.bind(this);
+
         initView();
         tv_home.performClick();
 //        TextView address = (TextView) findViewById(R.id.adress);
@@ -94,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 .hide(homeFragment)
                 .hide(mineFragment)
                 .commitAllowingStateLoss();
+
         tv_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
