@@ -32,6 +32,9 @@ import com.google.zxing.WriterException;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import cn.tthud.a51sign.R;
 import cn.tthud.a51sign.activity.AddAssetsActivity;
 import cn.tthud.a51sign.activity.ReceivAddressActivity;
@@ -48,15 +51,17 @@ import static android.app.Activity.RESULT_OK;
  */
 
 public class HomeFragment extends Fragment {
-    private RecyclerView recyc_list;
+    @BindView(R.id.recyc_list) RecyclerView recyc_list;
     private List<String> list;
     private HomeAdapter adapter;
-    private ImageView iv_add;
-    private ImageButton top_right_icon;
-    private TextView top_center_text;
-    private ImageButton top_left;
+    @BindView(R.id.iv_add) ImageView iv_add;
+    @BindView(R.id.top_right_icon) ImageButton top_right_icon;
+    @BindView(R.id.top_center_text) TextView top_center_text;
+    @BindView(R.id.top_left) ImageButton top_left;
     private int REQUEST_CODE_SCAN = 111;
-    private LinearLayout ll_code_address;
+    @BindView(R.id.ll_code_address) LinearLayout ll_code_address;
+
+    private Unbinder unbinder;
 
     public HomeFragment() {
 
@@ -65,13 +70,14 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_fragment,container,false);
+        unbinder = ButterKnife.bind(this,view);
         inittopbar(view);
         initView(view);
         return view;
     }
 
     private void inittopbar(View view) {
-        top_right_icon = view.findViewById(R.id.top_right_icon);
+
         top_right_icon.setImageResource(R.mipmap.icon_scaner);
         top_right_icon.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
@@ -98,15 +104,12 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        top_center_text = view.findViewById(R.id.top_center_text);
         top_center_text.setText("51钱包");
 
-        top_left = view.findViewById(R.id.top_left);
         top_left.setVisibility(View.INVISIBLE);
     }
 
     private void initView(View view) {
-        recyc_list = view.findViewById(R.id.recyc_list);
         list = new ArrayList<>();
         list.add("BTC");
         list.add("ETH");
@@ -119,7 +122,6 @@ public class HomeFragment extends Fragment {
         recyc_list.setAdapter(adapter);
 
 
-        iv_add = view.findViewById(R.id.iv_add);
         iv_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -128,7 +130,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        ll_code_address = view.findViewById(R.id.ll_code_address);
         ll_code_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -163,5 +164,11 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(getActivity(),"未获得授权！",Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
     }
 }
