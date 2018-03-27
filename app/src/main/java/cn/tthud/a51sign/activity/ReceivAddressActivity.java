@@ -13,25 +13,27 @@ import android.widget.Toast;
 import com.google.zxing.WriterException;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import cn.tthud.a51sign.R;
 import cn.tthud.a51sign.zxing.encode.CodeCreator;
 
 public class ReceivAddressActivity extends AppCompatActivity {
 
     @BindView(R.id.tv_address)
-    private TextView tv_address;
+    TextView tv_address;
     @BindView(R.id.et_number)
-    private EditText et_number;
+    EditText et_number;
     @BindView(R.id.contentIv)
-    private ImageView contentIv;
+    ImageView contentIv;
     @BindView(R.id.btn_copy_address)
-    private Button btn_copy_address;
+    Button btn_copy_address;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receiv_address);
+        ButterKnife.bind(this);
         initview();
     }
 
