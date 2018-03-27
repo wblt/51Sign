@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,14 +31,40 @@ public class ReceivAddressActivity extends AppCompatActivity {
     @BindView(R.id.btn_copy_address)
     Button btn_copy_address;
 
+    @BindView(R.id.top_right_text)
+    TextView top_right_text;
+    @BindView(R.id.top_center_text)
+    TextView top_center_text;
+    @BindView(R.id.top_left)
+    ImageButton top_left;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receiv_address);
         ButterKnife.bind(this);
+        inittopbar();
         initview();
     }
+
+    private void inittopbar() {
+        top_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        top_right_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ReceivAddressActivity.this, "开发中", Toast.LENGTH_SHORT).show();
+            }
+        });
+        top_right_text.setText("分享");
+        top_center_text.setText("收款码");
+    }
+
 
     private void initview() {
         String contentEtString = "0x94F9c5579Eb813065956E3832Ac4f6ff44439DF0";
