@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import butterknife.BindView;
 import cn.tthud.a51sign.bitaddress.BitAddress;
 import cn.tthud.a51sign.ecdsa.ECDSA;
 import cn.tthud.a51sign.fragment.HomeFragment;
@@ -14,7 +15,9 @@ import cn.tthud.a51sign.fragment.MineFragment;
 public class MainActivity extends AppCompatActivity {
 
 
-    private TextView tv_home;
+    @BindView(R.id.tv_home)
+    TextView tv_home;
+
     private TextView tv_mine;
     private HomeFragment homeFragment;
     private MineFragment mineFragment;
@@ -81,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void initView() {
-        tv_home = findViewById(R.id.tv_home);
+       // tv_home = findViewById(R.id.tv_home);
         tv_mine = findViewById(R.id.tv_mine);
         homeFragment = new HomeFragment();
         mineFragment = new MineFragment();
