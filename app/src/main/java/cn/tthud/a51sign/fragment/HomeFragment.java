@@ -23,7 +23,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mylhyl.zxing.scanner.common.Scanner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +30,6 @@ import java.util.List;
 import cn.tthud.a51sign.AddAssetsActivity;
 import cn.tthud.a51sign.R;
 import cn.tthud.a51sign.adapter.HomeAdapter;
-import cn.tthud.a51sign.scanner.ScannerActivity;
 
 /**
  * Created by yh on 2018/3/26.
@@ -68,18 +66,14 @@ public class HomeFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
+                Toast.makeText(getActivity(),"开发中", Toast.LENGTH_SHORT).show();
                 if (ContextCompat.checkSelfPermission(getActivity(),
                         Manifest.permission.CAMERA)
                         != PackageManager.PERMISSION_GRANTED) {
                     //权限还没有授予，需要在这里写申请权限的代码
                     requestPermissions(new String[]{Manifest.permission.CAMERA}, 60);
                 } else {
-                    //权限已经被授予，在这里直接写要执行的相应方法即可
-                    laserMode = ScannerActivity.EXTRA_LASER_LINE_MODE_0;
-                    scanMode = ScannerActivity.EXTRA_SCAN_MODE_0;
-                    ScannerActivity.gotoActivity(getActivity(),
-                            false, laserMode, scanMode, false
-                            , false, false);
+
                 }
             }
         });
@@ -133,26 +127,26 @@ public class HomeFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != Activity.RESULT_CANCELED && resultCode == Activity.RESULT_OK) {
-            if (requestCode == ScannerActivity.REQUEST_CODE_SCANNER) {
-                if (data != null) {
-                    String stringExtra = data.getStringExtra(Scanner.Scan.RESULT);
-                    Toast.makeText(getActivity(),stringExtra, Toast.LENGTH_SHORT).show();
-                }
-            }
+//            if (requestCode == ScannerActivity.REQUEST_CODE_SCANNER) {
+//                if (data != null) {
+//                    String stringExtra = data.getStringExtra(Scanner.Scan.RESULT);
+//                    Toast.makeText(getActivity(),stringExtra, Toast.LENGTH_SHORT).show();
+//                }
+//            }
         }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == ScannerActivity.REQUEST_CODE_SCANNER) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission Granted准许
-                Toast.makeText(getActivity(),"已获得授权！",Toast.LENGTH_SHORT).show();
-            } else {
-                // Permission Denied拒绝
-                Toast.makeText(getActivity(),"未获得授权！",Toast.LENGTH_SHORT).show();
-            }
-        }
+//        if (requestCode == ScannerActivity.REQUEST_CODE_SCANNER) {
+//            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                // Permission Granted准许
+//                Toast.makeText(getActivity(),"已获得授权！",Toast.LENGTH_SHORT).show();
+//            } else {
+//                // Permission Denied拒绝
+//                Toast.makeText(getActivity(),"未获得授权！",Toast.LENGTH_SHORT).show();
+//            }
+//        }
     }
 }

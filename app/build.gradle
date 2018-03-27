@@ -45,5 +45,4 @@ dependencies {
     compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'
     compile 'com.android.support:design:26.1.0'
     testCompile 'junit:junit:4.12'
-    compile project(':zxingscanner')
 }
