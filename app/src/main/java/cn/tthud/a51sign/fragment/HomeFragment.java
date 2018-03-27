@@ -115,6 +115,12 @@ public class HomeFragment extends Fragment {
         list.add("ETH");
         list.add("EOS");
         list.add("OMG");
+        list.add("ETH");
+        list.add("EOS");
+        list.add("OMG");
+        list.add("ETH");
+        list.add("EOS");
+        list.add("OMG");
 
         recyc_list.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new HomeAdapter(list,getActivity());

@@ -46,9 +46,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-
         private TextView tv_coinname;
-
         public MyViewHolder(View itemView) {
             super(itemView);
             tv_coinname = itemView.findViewById(R.id.tv_coinname);
