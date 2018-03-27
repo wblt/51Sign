@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,14 +16,18 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.google.zxing.WriterException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +35,12 @@ import java.util.List;
 import cn.tthud.a51sign.AddAssetsActivity;
 import cn.tthud.a51sign.R;
 import cn.tthud.a51sign.adapter.HomeAdapter;
+import cn.tthud.a51sign.zxing.android.CaptureActivity;
+import cn.tthud.a51sign.zxing.bean.ZxingConfig;
+import cn.tthud.a51sign.zxing.common.Constant;
+import cn.tthud.a51sign.zxing.encode.CodeCreator;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by yh on 2018/3/26.
@@ -44,7 +55,8 @@ public class HomeFragment extends Fragment {
     private ImageButton top_right_icon;
     private TextView top_center_text;
     private ImageButton top_left;
-    private int laserMode, scanMode;
+    private int REQUEST_CODE_SCAN = 111;
+    private LinearLayout tv_username;
 
     public HomeFragment() {
 
@@ -66,14 +78,23 @@ public class HomeFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(),"开发中", Toast.LENGTH_SHORT).show();
                 if (ContextCompat.checkSelfPermission(getActivity(),
                         Manifest.permission.CAMERA)
                         != PackageManager.PERMISSION_GRANTED) {
                     //权限还没有授予，需要在这里写申请权限的代码
                     requestPermissions(new String[]{Manifest.permission.CAMERA}, 60);
                 } else {
-
+                    Intent intent = new Intent(getActivity(), CaptureActivity.class);
+                                /*ZxingConfig是配置类  可以设置是否显示底部布局，闪光灯，相册，是否播放提示音  震动等动能
+                                * 也可以不传这个参数
+                                * 不传的话  默认都为默认不震动  其他都为true
+                                * */
+                    ZxingConfig config = new ZxingConfig();
+                    config.setPlayBeep(true);
+                    config.setShake(true);
+                    config.setShowbottomLayout(false);
+                    intent.putExtra(Constant.INTENT_ZXING_CONFIG, config);
+                    startActivityForResult(intent, REQUEST_CODE_SCAN);
                 }
             }
         });
@@ -107,46 +128,53 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-    }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (resultCode != Activity.RESULT_CANCELED && resultCode == Activity.RESULT_OK) {
-//            if (requestCode == ScannerActivity.REQUEST_CODE_SCANNER) {
-//                if (data != null) {
-//                    String stringExtra = data.getStringExtra(Scanner.Scan.RESULT);
-//                    Toast.makeText(getActivity(),stringExtra, Toast.LENGTH_SHORT).show();
+        tv_username.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "开发中", Toast.LENGTH_SHORT).show();
+//                String contentEtString = "dfjdfkjdfkdjfkdjfdkjfkdfjd";
+//                if (TextUtils.isEmpty(contentEtString)) {
+//                    Toast.makeText(getActivity(), "contentEtString不能为空", Toast.LENGTH_SHORT).show();
+//                    return;
 //                }
-//            }
-//        }
-//    }
+//                Bitmap bitmap = null;
+//                try {
+//                    bitmap = CodeCreator.createQRCode(contentEtString, 1000, 1000, null);
+//                } catch (WriterException e) {
+//                    e.printStackTrace();
+//                }
+//                if (bitmap != null) {
+//                    contentIv.setImageBitmap(bitmap);
+//                }
+            }
+        });
+    }
 
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode != Activity.RESULT_CANCELED && resultCode == Activity.RESULT_OK) {
-//            if (requestCode == ScannerActivity.REQUEST_CODE_SCANNER) {
-//                if (data != null) {
-//                    String stringExtra = data.getStringExtra(Scanner.Scan.RESULT);
-//                    Toast.makeText(getActivity(),stringExtra, Toast.LENGTH_SHORT).show();
-//                }
-//            }
+        //        // 扫描二维码/条码回传
+        if (requestCode == REQUEST_CODE_SCAN && resultCode == RESULT_OK) {
+            if (data != null) {
+                String content = data.getStringExtra(Constant.CODED_CONTENT);
+                Toast.makeText(getActivity(),content, Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        if (requestCode == ScannerActivity.REQUEST_CODE_SCANNER) {
-//            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                // Permission Granted准许
-//                Toast.makeText(getActivity(),"已获得授权！",Toast.LENGTH_SHORT).show();
-//            } else {
-//                // Permission Denied拒绝
-//                Toast.makeText(getActivity(),"未获得授权！",Toast.LENGTH_SHORT).show();
-//            }
-//        }
+        if (requestCode == REQUEST_CODE_SCAN) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission Granted准许
+                Toast.makeText(getActivity(),"已获得授权！",Toast.LENGTH_SHORT).show();
+            } else {
+                // Permission Denied拒绝
+                Toast.makeText(getActivity(),"未获得授权！",Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
