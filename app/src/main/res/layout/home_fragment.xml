@@ -3,12 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <include
+        android:id="@+id/bolck_titlebar"
+        layout="@layout/activity_top_icon" />
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         >
 
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
@@ -31,7 +33,7 @@
                     android:layout_height="40dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@mipmap/header" />
 
                 <TextView
                     android:id="@+id/tv_username"
@@ -39,19 +41,33 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/iv_userimg"
                     android:layout_marginTop="5dp"
-                    android:text="姓名"
-                    android:textAlignment="center" />
+                    android:text="大兵哥"
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"/>
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
                     android:layout_below="@+id/tv_username"
-                    android:layout_marginTop="5dp"
-                    android:text="oxasdasdasdsad"
-                    android:textAlignment="center" />
-
+                    android:gravity="center"
+                    android:padding="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0x94F9c5579Eb813065956E3832Ac4f6ff44439DF0"
+                        android:textAlignment="center"
+                        android:textColor="#ffffff"
+                        android:textSize="13sp"
+                        android:singleLine="true"
+                        android:ellipsize="middle"
+                        android:maxEms="16"/>
+                    <ImageView
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="center"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/scan_code"/>
+                </LinearLayout>
 
                 <TextView
                     android:textColor="#ffffff"
@@ -61,7 +77,6 @@
                     android:layout_above="@+id/tv_rmb"
                     android:text="≈ 0"
                     android:textSize="25sp"
-
                     />
 
                 <TextView
@@ -79,14 +94,12 @@
                     android:id="@+id/iv_add"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/add"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
                     />
-
-
             </RelativeLayout>
 
 
@@ -97,7 +110,6 @@
 
             </android.support.v7.widget.RecyclerView>
         </LinearLayout>
-        
 
         <com.scwang.smartrefresh.layout.footer.ClassicsFooter
             android:layout_width="match_parent"

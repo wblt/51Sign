@@ -23,13 +23,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
      //   setContentView(R.layout.activity_main);
-
         setContentView(R.layout.activity_home);
-
         initView();
         tv_home.performClick();
-
-
 //        TextView address = (TextView) findViewById(R.id.adress);
 //        TextView gerorateo = (TextView) findViewById(R.id.gerorateo);
 //        TextView sign_action = (TextView) findViewById(R.id.sign_action);
@@ -81,31 +77,25 @@ public class MainActivity extends AppCompatActivity {
 //
 //            }
 //        });
-
-
     }
 
 
     private void initView() {
         tv_home = findViewById(R.id.tv_home);
         tv_mine = findViewById(R.id.tv_mine);
-
         homeFragment = new HomeFragment();
         mineFragment = new MineFragment();
-
         getFragmentManager().beginTransaction()
                 .add(R.id.fg_content,mineFragment)
                 .add(R.id.fg_content,homeFragment)
                 .hide(homeFragment)
                 .hide(mineFragment)
                 .commitAllowingStateLoss();
-
         tv_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setSelected();
                 tv_home.setSelected(true);
-
                 FragmentTransaction fTransaction = getFragmentManager().beginTransaction();
                 fTransaction.hide(mineFragment);
                 fTransaction.show(homeFragment);
@@ -126,8 +116,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
+    
     private void setSelected() {
         tv_home.setSelected(false);
         tv_mine.setSelected(false);
