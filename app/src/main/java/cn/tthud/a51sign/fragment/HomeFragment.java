@@ -60,7 +60,6 @@ public class HomeFragment extends Fragment {
     @BindView(R.id.top_left) ImageButton top_left;
     private int REQUEST_CODE_SCAN = 111;
     @BindView(R.id.ll_code_address) LinearLayout ll_code_address;
-
     private Unbinder unbinder;
 
     public HomeFragment() {

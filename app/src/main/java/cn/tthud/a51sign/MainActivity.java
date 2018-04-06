@@ -3,8 +3,17 @@ package cn.tthud.a51sign;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import org.apaches.commons.codec.binary.Hex;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.nio.ByteBuffer;
+import java.security.SecureRandom;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -12,6 +21,12 @@ import cn.tthud.a51sign.bitaddress.BitAddress;
 import cn.tthud.a51sign.ecdsa.ECDSA;
 import cn.tthud.a51sign.fragment.HomeFragment;
 import cn.tthud.a51sign.fragment.MineFragment;
+import cn.tthud.a51sign.helper.BIP39;
+import cn.tthud.a51sign.helper.BtcPrivateKeyConverter;
+import cn.tthud.a51sign.helper.ByteUtils;
+import cn.tthud.a51sign.helper.ResourcesUtil;
+
+import static junit.framework.Assert.assertTrue;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
      //   setContentView(R.layout.activity_main);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
+        test();
 
         initView();
         tv_home.performClick();
@@ -126,4 +142,17 @@ public class MainActivity extends AppCompatActivity {
         tv_home.setSelected(false);
         tv_mine.setSelected(false);
     }
+
+    /**
+     * bip39test
+     */
+    private void test() {
+        BIP39 bip39 = new BIP39(this);
+        byte [] random  = SecureRandom.getSeed(16);
+        String e = bip39.encode(random);
+        Log.e("tag","");
+        byte [] data = bip39.decode(e);
+        Log.e("tag","");
+    }
+
 }
