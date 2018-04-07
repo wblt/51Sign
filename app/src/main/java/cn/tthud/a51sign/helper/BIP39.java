@@ -39,10 +39,6 @@ public class BIP39 {
 		worldList = ResourcesUtil.readAssetsTxt(context, worldListResource).split(" ");
 	}
 
-	public String decodeToHexString(String mnemonic, String passphrase) {
-		return ByteUtils.toHex(decode(mnemonic, passphrase));
-	}
-
 	/**
 	 * Dencode data[] to mnemonic phrase with password phrase.
 	 * @param mnemonic
@@ -201,14 +197,4 @@ public class BIP39 {
 		return mnemo.toString ();
 	}
 
-	/**
-	 * Encode private keys in WIF format to mnemonic phrase.
-	 * @see <a href="https://en.bitcoin.it/wiki/Wallet_import_format">https://en.bitcoin.it/wiki/Wallet_import_format</a>
-	 * @param wif
-	 * @param passphrase
-	 * @return
-	 */
-	public String encodeWif(String wif, String passphrase) {
-		return encode(BtcPrivateKeyConverter.wifToPrivateKey(wif), passphrase);
-	}
 }
