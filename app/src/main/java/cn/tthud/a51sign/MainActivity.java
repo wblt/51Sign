@@ -22,7 +22,6 @@ import cn.tthud.a51sign.ecdsa.ECDSA;
 import cn.tthud.a51sign.fragment.HomeFragment;
 import cn.tthud.a51sign.fragment.MineFragment;
 import cn.tthud.a51sign.helper.BIP39;
-import cn.tthud.a51sign.helper.BtcPrivateKeyConverter;
 import cn.tthud.a51sign.helper.ByteUtils;
 import cn.tthud.a51sign.helper.ResourcesUtil;
 
